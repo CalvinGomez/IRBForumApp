@@ -1,0 +1,629 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <% include partials/head %>
+    
+    <style> /* set the CSS */
+
+        path { 
+            stroke: steelblue;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: grey;
+            stroke-width: 1;
+            shape-rendering: crispEdges;
+        }
+
+    </style>
+    
+    
+</head>
+<body>
+
+<div class="wrapper">
+    <% include partials/sidebar %>
+
+    <div class="main-panel">
+        <nav class="navbar navbar-default navbar-fixed">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-left">
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        
+
+        <div class="content">
+            
+            <div class="container-fluid">
+                
+                
+                <div class="row">
+                    <div class="col-md-100">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">privacy</h4>
+                                <p class="category">Number of times keyword has been used over time</p>
+                            </div>
+                            <div class="content">
+                                <div id="privacy">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-100">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">share</h4>
+                                <p class="category">Number of times keyword has been used over time</p>
+                            </div>
+                            <div class="content">
+                                <div id="share">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <div class="row">
+                    <div class="col-md-100">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">post</h4>
+                                <p class="category">Number of times keyword has been used over time</p>
+                            </div>
+                            <div class="content">
+                                <div id="post">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <div class="row">
+                    <div class="col-md-100">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">internet</h4>
+                                <p class="category">Number of times keyword has been used over time</p>
+                            </div>
+                            <div class="content">
+                                <div id="internet">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-100">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">mobile</h4>
+                                <p class="category">Number of times keyword has been used over time</p>
+                            </div>
+                            <div class="content">
+                                <div id="mobile">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-100">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">video</h4>
+                                <p class="category">Number of times keyword has been used over time</p>
+                            </div>
+                            <div class="content">
+                                <div id="video">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-100">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">third party</h4>
+                                <p class="category">Number of times keyword has been used over time</p>
+                            </div>
+                            <div class="content">
+                                <div id="thirdparty">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-100">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">tech</h4>
+                                <p class="category">Number of times keyword has been used over time</p>
+                            </div>
+                            <div class="content">
+                                <div id="tech">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-100">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">facebook</h4>
+                                <p class="category">Number of times keyword has been used over time</p>
+                            </div>
+                            <div class="content">
+                                <div id="facebook">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-100">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">image</h4>
+                                <p class="category">Number of times keyword has been used over time</p>
+                            </div>
+                            <div class="content">
+                                <div id="image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+
+    </div>
+</div>
+
+
+</body>
+<% include partials/script_imports %>
+    
+<!-- load the d3.js library. Using v3 because of issue with divs -->    
+<script src="http://d3js.org/d3.v3.min.js"></script>
+
+<!-- graphs --> 
+<script>
+
+    // Set the dimensions of the canvas / graph
+    var	margin = {top: 30, right: 20, bottom: 30, left: 50},
+        width = 400 - margin.left - margin.right,
+        height = 220 - margin.top - margin.bottom;
+
+    // Parse the date / time
+    var	parseDate = d3.time.format("%d-%b-%y").parse;
+
+    // Set the ranges
+    var	x = d3.time.scale().range([0, width]);
+    var	y = d3.scale.linear().range([height, 0]);
+
+    // Define the axes
+    var	xAxis = d3.svg.axis().scale(x)
+        .orient("bottom").ticks(5);
+
+    var	yAxis = d3.svg.axis().scale(y)
+        .orient("left").ticks(5);
+
+    // Define the line
+    var	valueline = d3.svg.line()
+        .x(function(d) { return x(d.month); })
+        .y(function(d) { return y(d.count); });
+
+    // Adds the svg canvas
+    var	chart1 = d3.select("#privacy")
+        .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    // Get the data
+    d3.csv("assets/data/privacy.csv", function(error, data) {
+        data.forEach(function(d) {
+            d.month = parseDate(d.month);
+            d.count = +d.count;
+        });
+
+        // Scale the range of the data
+        x.domain(d3.extent(data, function(d) { return d.month; }));
+        y.domain([0, d3.max(data, function(d) { return d.count; })]);
+
+        // Add the valueline path.
+        chart1.append("path")
+            .attr("class", "line")
+            .attr("d", valueline(data));
+
+        // Add the X Axis
+        chart1.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis);
+
+        // Add the Y Axis
+        chart1.append("g")
+            .attr("class", "y axis")
+            .call(yAxis);
+
+    });
+
+    // Adds the svg canvas
+    var	chart2 = d3.select("#share")
+        .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    // Get the data
+    d3.csv("assets/data/share.csv", function(error, data) {
+        data.forEach(function(d) {
+            d.month = parseDate(d.month);
+            d.count = +d.count;
+        });
+
+        // Scale the range of the data
+        x.domain(d3.extent(data, function(d) { return d.month; }));
+        y.domain([0, d3.max(data, function(d) { return d.count; })]);
+
+        // Add the valueline path.
+        chart2.append("path")
+            .attr("class", "line")
+            .attr("d", valueline(data));
+
+        // Add the X Axis
+        chart2.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis);
+
+        // Add the Y Axis
+        chart2.append("g")
+            .attr("class", "y axis")
+            .call(yAxis);
+
+    });
+
+    // Adds the svg canvas
+    var	chart3 = d3.select("#post")
+        .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    // Get the data
+    d3.csv("assets/data/post.csv", function(error, data) {
+        data.forEach(function(d) {
+            d.month = parseDate(d.month);
+            d.count = +d.count;
+        });
+
+        // Scale the range of the data
+        x.domain(d3.extent(data, function(d) { return d.month; }));
+        y.domain([0, d3.max(data, function(d) { return d.count; })]);
+
+        // Add the valueline path.
+        chart3.append("path")
+            .attr("class", "line")
+            .attr("d", valueline(data));
+
+        // Add the X Axis
+        chart3.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis);
+
+        // Add the Y Axis
+        chart3.append("g")
+            .attr("class", "y axis")
+            .call(yAxis);
+
+    });
+        
+        
+    // Adds the svg canvas
+    var	chart4 = d3.select("#internet")
+        .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    // Get the data
+    d3.csv("assets/data/internet.csv", function(error, data) {
+        data.forEach(function(d) {
+            d.month = parseDate(d.month);
+            d.count = +d.count;
+        });
+
+        // Scale the range of the data
+        x.domain(d3.extent(data, function(d) { return d.month; }));
+        y.domain([0, d3.max(data, function(d) { return d.count; })]);
+
+        // Add the valueline path.
+        chart4.append("path")
+            .attr("class", "line")
+            .attr("d", valueline(data));
+
+        // Add the X Axis
+        chart4.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis);
+
+        // Add the Y Axis
+        chart4.append("g")
+            .attr("class", "y axis")
+            .call(yAxis);
+
+    });
+        
+        
+    // Adds the svg canvas
+    var	chart5 = d3.select("#mobile")
+        .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    // Get the data
+    d3.csv("assets/data/mobile.csv", function(error, data) {
+        data.forEach(function(d) {
+            d.month = parseDate(d.month);
+            d.count = +d.count;
+        });
+
+        // Scale the range of the data
+        x.domain(d3.extent(data, function(d) { return d.month; }));
+        y.domain([0, d3.max(data, function(d) { return d.count; })]);
+
+        // Add the valueline path.
+        chart5.append("path")
+            .attr("class", "line")
+            .attr("d", valueline(data));
+
+        // Add the X Axis
+        chart5.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis);
+
+        // Add the Y Axis
+        chart5.append("g")
+            .attr("class", "y axis")
+            .call(yAxis);
+
+    });
+        
+        
+    // Adds the svg canvas
+    var	chart6 = d3.select("#video")
+        .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    // Get the data
+    d3.csv("assets/data/video.csv", function(error, data) {
+        data.forEach(function(d) {
+            d.month = parseDate(d.month);
+            d.count = +d.count;
+        });
+
+        // Scale the range of the data
+        x.domain(d3.extent(data, function(d) { return d.month; }));
+        y.domain([0, d3.max(data, function(d) { return d.count; })]);
+
+        // Add the valueline path.
+        chart6.append("path")
+            .attr("class", "line")
+            .attr("d", valueline(data));
+
+        // Add the X Axis
+        chart6.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis);
+
+        // Add the Y Axis
+        chart6.append("g")
+            .attr("class", "y axis")
+            .call(yAxis);
+
+    });
+        
+        
+    // Adds the svg canvas
+    var	chart7 = d3.select("#thirdparty")
+        .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    // Get the data
+    d3.csv("assets/data/third-party.csv", function(error, data) {
+        data.forEach(function(d) {
+            d.month = parseDate(d.month);
+            d.count = +d.count;
+        });
+
+        // Scale the range of the data
+        x.domain(d3.extent(data, function(d) { return d.month; }));
+        y.domain([0, d3.max(data, function(d) { return d.count; })]);
+
+        // Add the valueline path.
+        chart7.append("path")
+            .attr("class", "line")
+            .attr("d", valueline(data));
+
+        // Add the X Axis
+        chart7.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis);
+
+        // Add the Y Axis
+        chart7.append("g")
+            .attr("class", "y axis")
+            .call(yAxis);
+
+    });
+        
+        
+    // Adds the svg canvas
+    var	chart8 = d3.select("#tech")
+        .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    // Get the data
+    d3.csv("assets/data/tech.csv", function(error, data) {
+        data.forEach(function(d) {
+            d.month = parseDate(d.month);
+            d.count = +d.count;
+        });
+
+        // Scale the range of the data
+        x.domain(d3.extent(data, function(d) { return d.month; }));
+        y.domain([0, d3.max(data, function(d) { return d.count; })]);
+
+        // Add the valueline path.
+        chart8.append("path")
+            .attr("class", "line")
+            .attr("d", valueline(data));
+
+        // Add the X Axis
+        chart8.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis);
+
+        // Add the Y Axis
+        chart8.append("g")
+            .attr("class", "y axis")
+            .call(yAxis);
+
+    });
+        
+        
+    // Adds the svg canvas
+    var	chart9 = d3.select("#facebook")
+        .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    // Get the data
+    d3.csv("assets/data/facebook.csv", function(error, data) {
+        data.forEach(function(d) {
+            d.month = parseDate(d.month);
+            d.count = +d.count;
+        });
+
+        // Scale the range of the data
+        x.domain(d3.extent(data, function(d) { return d.month; }));
+        y.domain([0, d3.max(data, function(d) { return d.count; })]);
+
+        // Add the valueline path.
+        chart9.append("path")
+            .attr("class", "line")
+            .attr("d", valueline(data));
+
+        // Add the X Axis
+        chart9.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis);
+
+        // Add the Y Axis
+        chart9.append("g")
+            .attr("class", "y axis")
+            .call(yAxis);
+
+    });
+        
+        
+    // Adds the svg canvas
+    var	chart10 = d3.select("#image")
+        .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    // Get the data
+    d3.csv("assets/data/image.csv", function(error, data) {
+        data.forEach(function(d) {
+            d.month = parseDate(d.month);
+            d.count = +d.count;
+        });
+
+        // Scale the range of the data
+        x.domain(d3.extent(data, function(d) { return d.month; }));
+        y.domain([0, d3.max(data, function(d) { return d.count; })]);
+
+        // Add the valueline path.
+        chart10.append("path")
+            .attr("class", "line")
+            .attr("d", valueline(data));
+
+        // Add the X Axis
+        chart10.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis);
+
+        // Add the Y Axis
+        chart10.append("g")
+            .attr("class", "y axis")
+            .call(yAxis);
+
+    });
+</script>
+
+
+</html>
